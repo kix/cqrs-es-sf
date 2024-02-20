@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cf120711c1feb8cae94ee79ac135477c",
+    "content-hash": "2632b0529a629180381aec4b22d0a02d",
     "packages": [
         {
             "name": "psr/cache",
@@ -2598,6 +2598,63 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "phpat/phpat",
+            "version": "0.10.13",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/carlosas/phpat.git",
+                "reference": "4954eebf9b456837720b07486d29828461ed24fc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/carlosas/phpat/zipball/4954eebf9b456837720b07486d29828461ed24fc",
+                "reference": "4954eebf9b456837720b07486d29828461ed24fc",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4 || ^8.0",
+                "phpstan/phpstan": "^1.3"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.0",
+                "kubawerlos/php-cs-fixer-custom-fixers": "^3.16",
+                "phpunit/phpunit": "^9.0",
+                "vimeo/psalm": "^4.0 || ^5.0"
+            },
+            "type": "phpstan-extension",
+            "extra": {
+                "phpstan": {
+                    "includes": [
+                        "extension.neon"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "helpers.php"
+                ],
+                "psr-4": {
+                    "PHPat\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Carlos Alandete Sastre",
+                    "email": "carlos.alandete@gmail.com"
+                }
+            ],
+            "description": "PHP Architecture Tester",
+            "support": {
+                "issues": "https://github.com/carlosas/phpat/issues",
+                "source": "https://github.com/carlosas/phpat/tree/0.10.13"
+            },
+            "time": "2024-01-04T17:18:43+00:00"
+        },
         {
             "name": "phpstan/phpstan",
             "version": "1.10.59",

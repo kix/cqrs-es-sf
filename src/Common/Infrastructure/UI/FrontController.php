@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Common\UI;
+namespace Common\Infrastructure\UI;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

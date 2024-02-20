@@ -1,5 +1,10 @@
+services:
+    -
+        class: \Tests\Architecture\LayerDependencyTest
+        tags: { phpat.test }
+
 parameters:
-    level: 6
+    level: 9
     paths:
         - bin/
         - config/
