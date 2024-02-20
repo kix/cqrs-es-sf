@@ -1,0 +1,10 @@
+default:
+    suites:
+        default:
+            contexts:
+                - Tests\Behat\FeatureContext
+
+    extensions:
+        FriendsOfBehat\SymfonyExtension:
+            kernel:
+                class: \Common\Infrastructure\Symfony\Kernel

@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Behat;
+
 use Behat\Behat\Context\Context;
 
 final class FeatureContext implements Context

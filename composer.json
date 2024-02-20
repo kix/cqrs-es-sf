@@ -16,7 +16,9 @@
     },
     "require-dev": {
         "behat/behat": "^3.14",
+        "friends-of-behat/symfony-extension": "^2.4",
         "phpat/phpat": "^0.10.13",
+        "phpspec/phpspec": "^7.5",
         "phpstan/phpstan": "^1.10",
         "roave/security-advisories": "dev-latest",
         "symfony/debug-bundle": "5.4.*"
