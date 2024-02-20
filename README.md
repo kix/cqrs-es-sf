@@ -52,3 +52,8 @@ Behat can be used for covering user stories/scenarios.
 
 Let's imagine this business scenario: we allow people to sell and buy tickets to sports events, concerts and other types
 of public activities that usually have an entrance fee.
+
+
+### TODOs
+
+- [ ] There was codegen for phpspec and probably Behat also so that steps are auto-added
