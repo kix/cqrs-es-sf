@@ -15,9 +15,10 @@
         "symfony/yaml": "5.4.*"
     },
     "require-dev": {
-        "roave/security-advisories": "dev-latest",
+        "behat/behat": "^3.14",
         "phpat/phpat": "^0.10.13",
         "phpstan/phpstan": "^1.10",
+        "roave/security-advisories": "dev-latest",
         "symfony/debug-bundle": "5.4.*"
     },
     "config": {

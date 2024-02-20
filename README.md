@@ -46,7 +46,7 @@ message queues etc. It can be used to persist data to domain-local storages.
 
 ## Practical approach
 
-
+Behat can be used for covering user stories/scenarios.
 
 ## Example rundown
 
