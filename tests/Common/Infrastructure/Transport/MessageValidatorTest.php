@@ -42,7 +42,6 @@ final class MessageValidatorTest extends TestCase
 
         foreach ($schemas as $file) {
             $eventName = substr($file->getFilename(), 0, -12);
-            var_dump($eventName);
 
             $goodExamples = Finder::create()
                 ->files()
@@ -52,14 +51,11 @@ final class MessageValidatorTest extends TestCase
 
 
             foreach ($goodExamples as $example) {
-                var_dump($example->getFilename());
             }
 
         }
 
         $validator = self::createValidator();
-
-//        $validator->validate();
     }
 
     public function provideCases(): array

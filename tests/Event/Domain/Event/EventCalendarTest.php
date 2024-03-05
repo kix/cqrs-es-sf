@@ -50,6 +50,5 @@ final class EventCalendarTest extends TestCase
         $events = $aggregate->releaseEvents();
 
         $serializer = new ObjectSerializer();
-        var_dump($serializer->serialize($events[0]));
     }
 }
