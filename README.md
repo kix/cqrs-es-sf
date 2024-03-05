@@ -48,6 +48,9 @@ message queues etc. It can be used to persist data to domain-local storages.
 
 Behat can be used for covering user stories/scenarios.
 
+### Language of the system
+
+
 ## Example rundown
 
 Let's imagine this business scenario: we allow people to sell and buy tickets to sports events, concerts and other types
@@ -57,3 +60,4 @@ of public activities that usually have an entrance fee.
 ### TODOs
 
 - [ ] There was codegen for phpspec and probably Behat also so that steps are auto-added
+- [ ] Nested calls example

@@ -5,4 +5,59 @@ services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        bind:
+            $calendarRepository: '@aggregate_repository.event_calendar'
+            $commandBus: '@command.bus'
+            $queryBus: '@query.bus'
+            $eventBus: '@event.bus'
 
+    CqrsEsExample\Common\Infrastructure\Transport\SchemaRegistry: ~
+
+    CqrsEsExample\Common\Infrastructure\UI\Console\:
+        resource: '../src/Common/Infrastructure/UI/Console/*'
+        tags: ['console.command']
+
+    CqrsEsExample\Common\Infrastructure\UI\Http\KernelRequestListener:
+        arguments:
+            - !tagged_iterator request_transformer
+        tags:
+            - { name: 'kernel.event_listener', event: 'kernel.request', priority: 64 }
+
+    request_transformers:
+        namespace: CqrsEsExample\Common\Infrastructure\UI\Http\RequestMatcher\
+        resource: '../src/Common/Infrastructure/UI/Http/RequestMatcher/*Transformer.php'
+        tags: ['request_transformer']
+
+    command_handlers:
+        namespace: CqrsEsExample\
+        resource: '../src/*/Application/Command/*Handler.php'
+        tags: { name: 'messenger.message_handler', bus: 'command.bus' }
+
+    query_handlers:
+        namespace: CqrsEsExample\
+        resource: '../src/*/Application/Query/*Handler.php'
+        tags: { name: 'messenger.message_handler', bus: 'query.bus' }
+
+    projectors:
+        namespace: CqrsEsExample\
+        resource: '../src/*/Application/Projection/*Projector.php'
+        tags: { name: 'messenger.message_handler', bus: 'event.bus' }
+
+    CqrsEsExample\Common\Infrastructure\EventStorage\DateTimeFieldSerializer: ~
+
+    CqrsEsExample\Common\Infrastructure\EventStorage\ObjectSerializer:
+        arguments:
+            -
+                - '@CqrsEsExample\Common\Infrastructure\EventStorage\DateTimeFieldSerializer'
+
+    CqrsEsExample\DoctrineDBALAdapter\DoctrineDBALEventStorage:
+        public: true
+        arguments:
+            - '@doctrine.dbal.default_connection'
+            - '@serializer'
+
+    aggregate_repository.event_calendar:
+        class: \CqrsEsExample\Common\Domain\AggregateRootRepository
+        arguments:
+            - '\CqrsEsExample\Event\Domain\EventCalendar'
+            - '@CqrsEsExample\DoctrineDBALAdapter\DoctrineDBALEventStorage'

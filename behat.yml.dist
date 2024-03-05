@@ -2,9 +2,10 @@ default:
     suites:
         default:
             contexts:
-                - Tests\Behat\FeatureContext
+                - Tests\Behat\DomainContext
 
     extensions:
         FriendsOfBehat\SymfonyExtension:
             kernel:
-                class: \Common\Infrastructure\Symfony\Kernel
+                class: \CqrsEsExample\Common\Infrastructure\Symfony\Kernel
+            bootstrap: 'tests/bootstrap.php'

@@ -1,0 +1,28 @@
+{
+  "$id": "https://fanpass.co.uk/schemas/event/command/submit.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "A representation of an event filter",
+  "type": "object",
+  "required": [  ],
+  "properties": {
+    "_eventName": {
+      "type": "string",
+      "const": "event.command.list"
+    },
+    "startDatetime": {
+      "type": "string",
+      "pattern": "\\d{4}-[0-1]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d\\+\\d{4}"
+    },
+    "endDatetime": {
+      "type": "string",
+      "pattern": "\\d{4}-[0-1]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d\\+\\d{4}"
+    },
+    "title": {
+      "type": "string"
+    },
+    "location": {
+      "description": "Just a venue name for simplicity",
+      "type": "string"
+    }
+  }
+}
