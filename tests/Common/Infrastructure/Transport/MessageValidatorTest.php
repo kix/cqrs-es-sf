@@ -60,6 +60,6 @@ final class MessageValidatorTest extends TestCase
 
     public function provideCases(): array
     {
-
+        return [];
     }
 }
