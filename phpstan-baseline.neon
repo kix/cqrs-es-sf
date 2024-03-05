@@ -1,0 +1,81 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Unsafe usage of new static\\(\\)\\.$#"
+			count: 1
+			path: src/Common/Domain/AggregateRoot.php
+
+		-
+			message: "#^Cannot cast mixed to string\\.$#"
+			count: 1
+			path: src/Common/Infrastructure/EventStorage/ObjectSerializer.php
+
+		-
+			message: "#^Method CqrsEsExample\\\\Common\\\\Infrastructure\\\\EventStorage\\\\ObjectSerializer\\:\\:deserialize\\(\\) has parameter \\$serialized with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Common/Infrastructure/EventStorage/ObjectSerializer.php
+
+		-
+			message: "#^Method CqrsEsExample\\\\Common\\\\Infrastructure\\\\EventStorage\\\\ObjectSerializer\\:\\:serialize\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Common/Infrastructure/EventStorage/ObjectSerializer.php
+
+		-
+			message: "#^PHPDoc tag @param has invalid value \\(class\\-string\\<T of object\\>\\)\\: Unexpected token \"of\", expected '\\>' at offset 244$#"
+			count: 1
+			path: src/Common/Infrastructure/EventStorage/ObjectSerializer.php
+
+		-
+			message: "#^Parameter \\#1 \\$objectOrClass of class ReflectionClass constructor expects class\\-string\\<T of object\\>\\|T of object, string given\\.$#"
+			count: 1
+			path: src/Common/Infrastructure/EventStorage/ObjectSerializer.php
+
+		-
+			message: "#^Method CqrsEsExample\\\\Event\\\\Application\\\\Query\\\\ListEventsHandler\\:\\:__invoke\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Event/Application/Query/ListEventsHandler.php
+
+		-
+			message: "#^Cannot call method getResult\\(\\) on Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\HandledStamp\\|null\\.$#"
+			count: 1
+			path: tests/Behat/DomainContext.php
+
+		-
+			message: "#^Method Tests\\\\Behat\\\\DomainContext\\:\\:dispatchQuery\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Behat/DomainContext.php
+
+		-
+			message: "#^Method Tests\\\\Behat\\\\DomainContext\\:\\:dispatchQuery\\(\\) should return array but returns mixed\\.$#"
+			count: 1
+			path: tests/Behat/DomainContext.php
+
+		-
+			message: "#^Property Tests\\\\Behat\\\\DomainContext\\:\\:\\$role is never read, only written\\.$#"
+			count: 1
+			path: tests/Behat/DomainContext.php
+
+		-
+			message: "#^Class Common\\\\Infrastructure\\\\Transport\\\\ConfigurationException not found\\.$#"
+			count: 1
+			path: tests/Common/Infrastructure/Transport/MessageValidatorTest.php
+
+		-
+			message: "#^Instantiated class Common\\\\Infrastructure\\\\Transport\\\\MessageValidator not found\\.$#"
+			count: 2
+			path: tests/Common/Infrastructure/Transport/MessageValidatorTest.php
+
+		-
+			message: "#^Method Tests\\\\Common\\\\Infrastructure\\\\Transport\\\\MessageValidatorTest\\:\\:createValidator\\(\\) has invalid return type Common\\\\Infrastructure\\\\Transport\\\\MessageValidator\\.$#"
+			count: 1
+			path: tests/Common/Infrastructure/Transport/MessageValidatorTest.php
+
+		-
+			message: "#^Method Tests\\\\Common\\\\Infrastructure\\\\Transport\\\\MessageValidatorTest\\:\\:provideCases\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Common/Infrastructure/Transport/MessageValidatorTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$exception of method PHPUnit\\\\Framework\\\\TestCase\\:\\:expectException\\(\\) expects class\\-string\\<Throwable\\>, string given\\.$#"
+			count: 1
+			path: tests/Common/Infrastructure/Transport/MessageValidatorTest.php
