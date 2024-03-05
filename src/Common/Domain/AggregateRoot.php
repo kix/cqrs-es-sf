@@ -56,12 +56,12 @@ abstract class AggregateRoot
         $this->domainEvents []= $event;
 
         foreach ($this->invariants() as $invariant) {
-            $invariant::reconstituteFromEvents($this->domainEvents);
+            $instance = $invariant::reconstituteFromEvents($this->domainEvents);
         }
     }
 
     /**
-     * @return array<class-string<Invariant>>
+     * @return array<class-string<T of Invariant>>
      */
     protected function invariants(): array
     {

@@ -11,6 +11,9 @@ use CqrsEsExample\Common\Domain\AggregateException;
 use CqrsEsExample\Common\Domain\Invariant;
     use CqrsEsExample\Event\Domain\Event\EventRescheduled;
 
+/**
+ * @TODO Applicator methods shouldn't be public
+ */
 final class NoTwoEventsAtSameLocationAndTime extends Invariant
 {
     /**
@@ -18,7 +21,7 @@ final class NoTwoEventsAtSameLocationAndTime extends Invariant
      */
     private array $locationPeriods = [];
 
-    protected function applyEventApproved(EventApproved $event): void
+    public function applyEventApproved(EventApproved $event): void
     {
         $this->addPeriod(
             $event->location,
@@ -30,7 +33,7 @@ final class NoTwoEventsAtSameLocationAndTime extends Invariant
         );
     }
 
-    protected function applyEventRescheduleApproved(EventRescheduled $event): void
+    public function applyEventRescheduleApproved(EventRescheduled $event): void
     {
         $this->clearPeriod(
             $event->location,
