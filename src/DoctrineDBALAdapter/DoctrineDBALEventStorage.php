@@ -6,25 +6,25 @@ namespace CqrsEsExample\DoctrineDBALAdapter;
 
 use Doctrine\DBAL\Connection;
 use CqrsEsExample\Common\Infrastructure\EventStorage\EventStorageInterface;
+use Doctrine\DBAL\Exception;
 use Generator;
 use Override;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Symfony\Component\Serializer\SerializerInterface;
 
-final class DoctrineDBALEventStorage implements EventStorageInterface
+final readonly class DoctrineDBALEventStorage implements EventStorageInterface
 {
     public function __construct(
-        private readonly Connection          $connection,
-        private readonly SerializerInterface $serializer,
-        private readonly LoggerInterface     $logger = new NullLogger(),
+        private Connection          $connection,
+        private SerializerInterface $serializer,
+        private LoggerInterface     $logger = new NullLogger(),
     ) { }
 
     /**
      * @param string $aggregateRootId
      * @param object[] $events
-     * @throws \Doctrine\DBAL\Exception
-     * @throws \JsonException
+     * @throws Exception
      */
     #[Override]
     public function persist(string $aggregateRootId, array $events): void
@@ -54,7 +54,7 @@ final class DoctrineDBALEventStorage implements EventStorageInterface
 
             $stmt->executeQuery([
                 'eventType' => $event::class,
-                'aggregateRootId' => (string) $aggregateRootId,
+                'aggregateRootId' => $aggregateRootId,
                 'event' => $serialized,
             ]);
         }
@@ -66,7 +66,7 @@ final class DoctrineDBALEventStorage implements EventStorageInterface
         $stmt = $this->connection->executeQuery(
             'select event_type, event from public.domain_events where aggregate_root_id = :id',
             [
-                'id' => (string) $aggregateRootId
+                'id' => $aggregateRootId
             ]
         );
 

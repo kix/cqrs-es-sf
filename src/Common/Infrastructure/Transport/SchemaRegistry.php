@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace CqrsEsExample\Common\Infrastructure\Transport;
 
+use RuntimeException;
 use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Component\Finder\Finder;
 
-final class SchemaRegistry
+final readonly class SchemaRegistry
 {
     /**
      * @var array<string,SchemaDefinition>
      */
-    public readonly array $schemas;
+    public array $schemas;
 
     public function __construct()
     {
@@ -42,7 +43,7 @@ final class SchemaRegistry
     public function getSchemaRealpath(string $eventName): string
     {
         if (!array_key_exists($eventName, $this->schemas)) {
-             throw new \RuntimeException(sprintf(
+             throw new RuntimeException(sprintf(
                  'Schema for event `%s` does not exist',
                  $eventName
              ));

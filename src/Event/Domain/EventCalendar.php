@@ -17,8 +17,6 @@ final class EventCalendar extends AggregateRoot
 {
     private bool $isRegistered = false;
 
-    private array $events = [];
-
     public const string DEFAULT_CALENDAR_UUID = '024a9577-de3e-49c5-96ef-fae123b6e577';
 
     public function __construct(string $id = self::DEFAULT_CALENDAR_UUID)
@@ -69,12 +67,6 @@ final class EventCalendar extends AggregateRoot
 
     protected function applyEventRegistered(EventRegistered $event): void
     {
-        $this->events [] = [
-            'title' => $event->title,
-            'location' => $event->location,
-            'startDateTime' => $event->startDate,
-            'endDateTime' => $event->endDate,
-        ];
     }
 
     public function approveEvent(

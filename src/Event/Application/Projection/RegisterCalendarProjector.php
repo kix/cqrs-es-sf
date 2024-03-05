@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace CqrsEsExample\Event\Application\Projection;
 
-use CqrsEsExample\Event\Application\Command\RegisterEventCalendarCommand;
 use CqrsEsExample\Event\Domain\Event\EventCalendarRegistered;
 
 class RegisterCalendarProjector

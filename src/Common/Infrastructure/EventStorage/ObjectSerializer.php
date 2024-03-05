@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace CqrsEsExample\Common\Infrastructure\EventStorage;
 
+use ReflectionClass;
+use ReflectionException;
 use Stringable;
 
 final readonly class ObjectSerializer
@@ -20,10 +22,12 @@ final readonly class ObjectSerializer
      * If we have a serializer registered for a given class, then we should use it
      * If a prop is an object with props, we should recur
      *
-     * @return string|array<mixed>
+     * @return string|array
      */
     public function serialize(mixed $value): string|array
     {
+        $result = [];
+
         if (!is_object($value) || $value instanceof Stringable) {
             return (string) $value;
         }
@@ -46,13 +50,15 @@ final readonly class ObjectSerializer
      * If it's a constructor, iterate over its arguments, figure out which ones
      * accept plain values, which accept objects that have a registered serializer
      *
-     * @param class-string<T of object> $objectClass
-     * @param string $serialized
+     * @param class-string<T of object>
+     * @param array $serialized
+     * @return mixed
+     * @throws ReflectionException
      */
     public function deserialize(string $objectClass, array $serialized): mixed
     {
-        $reflection = new \ReflectionClass($objectClass);
-        $parameters = $reflection->getConstructor()->getParameters();
+        $reflection = new ReflectionClass($objectClass);
+        $parameters = $reflection->getConstructor()?->getParameters();
         $invocationParameters = [];
 
         return $reflection->newInstanceArgs($serialized);

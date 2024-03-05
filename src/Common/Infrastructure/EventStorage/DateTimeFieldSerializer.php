@@ -9,10 +9,10 @@ use DateTimeInterface;
 use Override;
 use RuntimeException;
 
-final class DateTimeFieldSerializer implements FieldSerializerInterface
+final readonly class DateTimeFieldSerializer implements FieldSerializerInterface
 {
     public function __construct(
-        private readonly string $format = DateTimeInterface::RFC3339_EXTENDED
+        private string $format = DateTimeInterface::RFC3339_EXTENDED
     ) {}
 
     #[Override]

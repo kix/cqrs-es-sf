@@ -10,7 +10,7 @@ use CqrsEsExample\Event\Domain\EventCalendar;
 final class ApproveEventHandler
 {
     public function __construct(
-        private AggregateRootRepository $calendarRepository,
+        private readonly AggregateRootRepository $calendarRepository,
     ) {}
 
     public function __invoke(ApproveEventCommand $command): void

@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace CqrsEsExample\Common\Infrastructure\UI\Http;
 
-use Symfony\Component\Messenger\Stamp\TransportMessageIdStamp;
-use CqrsEsExample\Common\Infrastructure\Transport\MessageTypeEnum;
+use RuntimeException;
 use CqrsEsExample\Common\Infrastructure\UI\Http\RequestMatcher\RequestTransformerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -47,7 +46,7 @@ final readonly class KernelRequestListener
                 $handledStamp = $envelope->last(HandledStamp::class);
 
                 if (!$handledStamp) {
-                    throw new \RuntimeException('Query handler did not return anything');
+                    throw new RuntimeException('Query handler did not return anything');
                 }
 
                 assert($handledStamp instanceof HandledStamp);

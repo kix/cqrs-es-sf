@@ -11,14 +11,14 @@ use CqrsEsExample\Event\Domain\EventCalendar;
 final class RegisterEventCalendarHandler
 {
     public function __construct(
-        private AggregateRootRepository $calendarRepository,
+        private readonly AggregateRootRepository $calendarRepository,
     ) {}
 
     public function __invoke(RegisterEventCalendarCommand $command): void
     {
         try {
             $this->calendarRepository->retrieve(EventCalendar::DEFAULT_CALENDAR_UUID);
-        } catch (AggregateException $e) {
+        } catch (AggregateException) {
             $calendar = new EventCalendar(EventCalendar::DEFAULT_CALENDAR_UUID);
             $calendar->register();
             $this->calendarRepository->persist($calendar);

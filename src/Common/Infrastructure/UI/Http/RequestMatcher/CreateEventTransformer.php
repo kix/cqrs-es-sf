@@ -28,7 +28,7 @@ final readonly class CreateEventTransformer implements RequestTransformerInterfa
             new DateTimeImmutable(
                 (string) $request->request->get('end')
             ),
-            $request->request->get('location')
+            (string) $request->request->get('location')
         );
     }
 }

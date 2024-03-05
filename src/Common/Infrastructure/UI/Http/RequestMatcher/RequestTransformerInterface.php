@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace CqrsEsExample\Common\Infrastructure\UI\Http\RequestMatcher;
 
-use CqrsEsExample\Common\Infrastructure\Transport\Message;
 use Symfony\Component\HttpFoundation\Request;
 
 interface RequestTransformerInterface

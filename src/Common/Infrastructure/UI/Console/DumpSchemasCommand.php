@@ -12,10 +12,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class DumpSchemasCommand extends Command
 {
-    public const NAME = 'events:dump-schemas';
+    public const string NAME = 'events:dump-schemas';
 
     public function __construct(
-        private SchemaRegistry $schemaRegistry,
+        private readonly SchemaRegistry $schemaRegistry,
     ) {
         parent::__construct(self::NAME);
     }

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace CqrsEsExample\Common\Infrastructure\EventStorage;
 
 use Generator;
-use Stringable;
 
 interface EventStorageInterface
 {
