@@ -21,8 +21,29 @@ final readonly class ListEventsHandler
      */
     public function __invoke(ListEventsQuery $query): array
     {
-        $stmt = $this->connection->prepare('SELECT * FROM events');
+        $qb = $this->connection->createQueryBuilder();
+        $qb
+            ->select('*')
+            ->from('events', 'e');
 
-        return $stmt->executeQuery()->fetchAllAssociative();
+        if ($query->location !== null) {
+            $qb->andWhere(
+                $qb->expr()->like('e.location', '%'.$query->location.'%')
+            );
+        }
+
+        if ($query->title !== null) {
+            $qb->andWhere(
+                $qb->expr()->like('e.title', '%'.$query->title.'%')
+            );
+        }
+
+        if ($query->fromDate !== null) {
+            $qb->andWhere(
+                $qb->expr()->gte('e.end')
+            );
+        }
+
+        return $qb->executeQuery()->fetchAllAssociative();
     }
 }
