@@ -47,6 +47,20 @@
             ".php-cs-fixer.dist.php"
         ]
     },
+    "overblog/graphql-bundle": {
+        "version": "1.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "0.12",
+            "ref": "b122f3bfcfc0706c617a74afa8510af4799810f6"
+        },
+        "files": [
+            "config/graphql/types/.gitignore",
+            "config/packages/graphql.yaml",
+            "config/routes/graphql.yaml"
+        ]
+    },
     "phpstan/phpstan": {
         "version": "1.10",
         "recipe": {
