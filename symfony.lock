@@ -47,6 +47,18 @@
             ".php-cs-fixer.dist.php"
         ]
     },
+    "overblog/graphiql-bundle": {
+        "version": "0.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "0.1",
+            "ref": "96d185c63491cd15c1570f6243ec1808f4462970"
+        },
+        "files": [
+            "config/routes/dev/graphiql.yaml"
+        ]
+    },
     "overblog/graphql-bundle": {
         "version": "1.3",
         "recipe": {
@@ -199,6 +211,19 @@
         "files": [
             "config/packages/translation.yaml",
             "translations/.gitignore"
+        ]
+    },
+    "symfony/twig-bundle": {
+        "version": "6.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "6.4",
+            "ref": "cab5fd2a13a45c266d45a7d9337e28dee6272877"
+        },
+        "files": [
+            "config/packages/twig.yaml",
+            "templates/base.html.twig"
         ]
     }
 }

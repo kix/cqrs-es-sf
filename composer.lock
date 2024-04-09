@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9fe7fb2770e73eed154d3b9006b720f9",
+    "content-hash": "c8abca7170c43950c7c45e202ac9fb1b",
     "packages": [
         {
             "name": "brick/math",
@@ -6106,6 +6106,79 @@
             "time": "2024-02-21T19:24:10+00:00"
         },
         {
+            "name": "overblog/graphiql-bundle",
+            "version": "v0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overblog/GraphiQLBundle.git",
+                "reference": "be0d4cecac49ee43e61fc31f3534e5eb872eb822"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/overblog/GraphiQLBundle/zipball/be0d4cecac49ee43e61fc31f3534e5eb872eb822",
+                "reference": "be0d4cecac49ee43e61fc31f3534e5eb872eb822",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0",
+                "symfony/http-foundation": "^5.3.7 || ^6.0",
+                "symfony/routing": "^5.3.7 || ^6.0",
+                "symfony/twig-bundle": "^5.3.7 || ^6.0"
+            },
+            "require-dev": {
+                "overblog/graphql-bundle": "dev-master",
+                "phpunit/phpunit": "^9.5.10",
+                "sensio/framework-extra-bundle": "^6.2",
+                "symfony/browser-kit": "^5.3 || ^6.0",
+                "symfony/config": "^5.3.7 || ^6.0",
+                "symfony/console": "^5.3.7 || ^6.0",
+                "symfony/dependency-injection": "^5.3.7 || ^6.0",
+                "symfony/dom-crawler": "^5.3.7 || ^6.0",
+                "symfony/expression-language": "^5.3.7 || ^6.0",
+                "symfony/finder": "^5.3.7 || ^6.0",
+                "symfony/framework-bundle": "^5.3.7 || ^6.0",
+                "symfony/templating": "^5.3.7 || ^6.0",
+                "symfony/yaml": "^5.3.7 || ^6.0",
+                "twig/twig": "^3.3.3",
+                "webonyx/graphql-php": "dev-master"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Overblog\\GraphiQLBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Renato Mefi",
+                    "email": "renato@mefi.in"
+                },
+                {
+                    "name": "Overblog",
+                    "homepage": "http://www.over-blog.com"
+                }
+            ],
+            "description": "Symfony GraphiQLBundle makes possible to render the UI into your symfony project",
+            "keywords": [
+                "graphiql",
+                "graphql"
+            ],
+            "support": {
+                "issues": "https://github.com/overblog/GraphiQLBundle/issues",
+                "source": "https://github.com/overblog/GraphiQLBundle/tree/v0.3.0"
+            },
+            "time": "2021-12-08T11:28:42+00:00"
+        },
+        {
             "name": "phar-io/manifest",
             "version": "2.0.4",
             "source": {
@@ -9484,6 +9557,90 @@
                 }
             ],
             "time": "2024-02-15T11:26:02+00:00"
+        },
+        {
+            "name": "symfony/twig-bundle",
+            "version": "v6.4.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/twig-bundle.git",
+                "reference": "f60ba43a09d88395d05797af982588b57331ff4d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/twig-bundle/zipball/f60ba43a09d88395d05797af982588b57331ff4d",
+                "reference": "f60ba43a09d88395d05797af982588b57331ff4d",
+                "shasum": ""
+            },
+            "require": {
+                "composer-runtime-api": ">=2.1",
+                "php": ">=8.1",
+                "symfony/config": "^6.1|^7.0",
+                "symfony/dependency-injection": "^6.1|^7.0",
+                "symfony/http-foundation": "^5.4|^6.0|^7.0",
+                "symfony/http-kernel": "^6.2",
+                "symfony/twig-bridge": "^6.4",
+                "twig/twig": "^2.13|^3.0.4"
+            },
+            "conflict": {
+                "symfony/framework-bundle": "<5.4",
+                "symfony/translation": "<5.4"
+            },
+            "require-dev": {
+                "symfony/asset": "^5.4|^6.0|^7.0",
+                "symfony/expression-language": "^5.4|^6.0|^7.0",
+                "symfony/finder": "^5.4|^6.0|^7.0",
+                "symfony/form": "^5.4|^6.0|^7.0",
+                "symfony/framework-bundle": "^5.4|^6.0|^7.0",
+                "symfony/routing": "^5.4|^6.0|^7.0",
+                "symfony/stopwatch": "^5.4|^6.0|^7.0",
+                "symfony/translation": "^5.4|^6.0|^7.0",
+                "symfony/web-link": "^5.4|^6.0|^7.0",
+                "symfony/yaml": "^5.4|^6.0|^7.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Bundle\\TwigBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Provides a tight integration of Twig into the Symfony full-stack framework",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/twig-bundle/tree/v6.4.4"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2024-02-15T11:23:52+00:00"
         },
         {
             "name": "theseer/tokenizer",

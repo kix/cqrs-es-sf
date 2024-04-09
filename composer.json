@@ -30,6 +30,7 @@
         "behat/behat": "^3.14",
         "friends-of-behat/symfony-extension": "^2.4",
         "friendsofphp/php-cs-fixer": "^3.51",
+        "overblog/graphiql-bundle": "^0.3.0",
         "phpat/phpat": "^0.10.13",
         "phpspec/phpspec": "^7.5",
         "phpstan/phpstan": "^1.10",
