@@ -13,6 +13,10 @@ final readonly class AggregateRootRepository
      * @throws AggregateException
      */
     public function __construct(
+        /**
+         * @template T of AggregateRoot
+         * @var class-string<T>
+         */
         private string $aggregateRootClassname,
         private EventStorageInterface $eventStorage,
         private MessageBusInterface $eventBus,
