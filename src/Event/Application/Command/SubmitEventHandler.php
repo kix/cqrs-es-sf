@@ -10,6 +10,9 @@ use CqrsEsExample\Event\Domain\EventCalendar;
 final readonly class SubmitEventHandler
 {
     public function __construct(
+        /**
+         * @var AggregateRootRepository<EventCalendar>
+         */
         private AggregateRootRepository $calendarRepository,
     ) {}
 

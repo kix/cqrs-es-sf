@@ -10,13 +10,13 @@ use CqrsEsExample\Event\Domain\EventCalendar;
 final class ApproveEventHandler
 {
     public function __construct(
+        /** @var AggregateRootRepository<EventCalendar> */
         private readonly AggregateRootRepository $calendarRepository,
     ) {}
 
     public function __invoke(ApproveEventCommand $command): void
     {
         $aggregate = $this->calendarRepository->retrieve(EventCalendar::DEFAULT_CALENDAR_UUID);
-        assert($aggregate instanceof EventCalendar);
 
         $aggregate->approveEvent(
             $command->startDatetime,

@@ -127,7 +127,9 @@ final class DomainContext implements Context
     private function dispatchQuery(object $query): array
     {
         $envelope = $this->queryBus->dispatch($query);
+        $stamp = $envelope->last(HandledStamp::class);
+        assert($stamp instanceof HandledStamp);
 
-        return $envelope->last(HandledStamp::class)->getResult();
+        return $stamp->getResult();
     }
 }

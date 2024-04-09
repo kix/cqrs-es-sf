@@ -7,16 +7,16 @@ namespace CqrsEsExample\Common\Domain;
 use CqrsEsExample\Common\Infrastructure\EventStorage\EventStorageInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 
+/**
+ * @template T of AggregateRoot
+ */
 final readonly class AggregateRootRepository
 {
     /**
+     * @param class-string<T> $aggregateRootClassname
      * @throws AggregateException
      */
     public function __construct(
-        /**
-         * @template T of AggregateRoot
-         * @var class-string<T>
-         */
         private string $aggregateRootClassname,
         private EventStorageInterface $eventStorage,
         private MessageBusInterface $eventBus,
@@ -41,6 +41,10 @@ final readonly class AggregateRootRepository
         $this->eventStorage->persist($aggregateRoot->id(), $releasedEvents);
     }
 
+    /**
+     * @return T
+     * @throws AggregateException
+     */
     public function retrieve(string $aggregateRootId): AggregateRoot
     {
         $events = $this->eventStorage->retrieve($aggregateRootId);
@@ -49,9 +53,6 @@ final readonly class AggregateRootRepository
             throw AggregateException::noEventsForAggregateRootId($aggregateRootId, $this->aggregateRootClassname);
         }
 
-        $result = $this->aggregateRootClassname::reconstituteFromEvents($aggregateRootId, $events);
-        assert($result instanceof AggregateRoot);
-
-        return $result;
+        return $this->aggregateRootClassname::reconstituteFromEvents($aggregateRootId, $events);
     }
 }

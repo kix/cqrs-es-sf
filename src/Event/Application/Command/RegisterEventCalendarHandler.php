@@ -11,6 +11,7 @@ use CqrsEsExample\Event\Domain\EventCalendar;
 final class RegisterEventCalendarHandler
 {
     public function __construct(
+        /** @var AggregateRootRepository<EventCalendar> */
         private readonly AggregateRootRepository $calendarRepository,
     ) {}
 

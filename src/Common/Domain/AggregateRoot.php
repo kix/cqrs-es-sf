@@ -33,7 +33,7 @@ abstract class AggregateRoot
      * @throws AggregateException
      * @throws ReflectionException
      */
-    public static function reconstituteFromEvents(string $id, Generator $events): self
+    public static function reconstituteFromEvents(string $id, Generator $events): static
     {
         $instance = new static($id);
 
@@ -54,14 +54,11 @@ abstract class AggregateRoot
     protected function recordThat(object $event): void
     {
         $this->domainEvents []= $event;
-
-        foreach ($this->invariants() as $invariant) {
-            $instance = $invariant::reconstituteFromEvents($this->domainEvents);
-        }
+        $this->assertInvariants();
     }
 
     /**
-     * @return array<class-string<T of Invariant>>
+     * @return array<class-string>>
      */
     protected function invariants(): array
     {
@@ -73,13 +70,18 @@ abstract class AggregateRoot
      */
     final public function releaseEvents(): array
     {
-        foreach ($this->invariants() as $invariant) {
-            $invariant::reconstituteFromEvents($this->domainEvents);
-        }
+        $this->assertInvariants();
 
         $events = $this->domainEvents;
         $this->domainEvents = [];
 
         return $events;
+    }
+
+    private function assertInvariants(): void
+    {
+        foreach ($this->invariants() as $invariant) {
+            call_user_func([$invariant, 'reconstituteFromEvents'], [$this->domainEvents]);
+        }
     }
 }
