@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace CqrsEsExample\Common\Domain;
 
 use Exception;
+use Stringable;
 
 final class AggregateException extends Exception
 {
@@ -50,9 +51,15 @@ final class AggregateException extends Exception
 
     public static function invariantViolated(Invariant $invariant): self
     {
-        return new self(sprintf(
+        $message = sprintf(
             'Invariant violated: %s',
             $invariant::class,
-        ));
+        );
+
+        if ($invariant instanceof Stringable) {
+            $message .= "\nReason: ".(string) $invariant;
+        }
+
+        return new self($message);
     }
 }

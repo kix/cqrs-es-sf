@@ -4,52 +4,34 @@ declare(strict_types=1);
 
 namespace CqrsEsExample\Event\Domain\Invariants;
 
+use CqrsEsExample\Common\Infrastructure\DateTimeRange;
 use CqrsEsExample\Event\Domain\Event\EventApproved;
-use DateInterval;
-use DatePeriod;
 use CqrsEsExample\Common\Domain\AggregateException;
 use CqrsEsExample\Common\Domain\Invariant;
-    use CqrsEsExample\Event\Domain\Event\EventRescheduled;
+use Stringable;
 
 /**
  * @TODO Applicator methods shouldn't be public
  */
-final class NoTwoEventsAtSameLocationAndTime extends Invariant
+final class NoTwoEventsAtSameLocationAndTime extends Invariant implements Stringable
 {
     /**
-     * @var array<string,array<DatePeriod>>
+     * Here we have a conclusion that event name and location name pairs are unique
+     *
+     * @var array<string,array<DateTimeRange>>
      */
-    private array $locationPeriods = [];
+    private array $eventDateRanges = [];
 
+    /**
+     * @throws AggregateException
+     */
     public function applyEventApproved(EventApproved $event): void
     {
-        $this->addPeriod(
-            $event->location,
-            new DatePeriod(
+        $this->addRange(
+            $event->title . '-'.$event->location,
+            new DateTimeRange(
                 $event->startDate,
-                new DateInterval('P30D'),
-                $event->endDate,
-            )
-        );
-    }
-
-    public function applyEventRescheduleApproved(EventRescheduled $event): void
-    {
-        $this->clearPeriod(
-            $event->location,
-            new DatePeriod(
-                $event->newStartDatetime,
-                new DateInterval('P30D'),
-                $event->newEndDatetime
-            )
-        );
-
-        $this->addPeriod(
-            $event->location,
-            new DatePeriod(
-                $event->newStartDatetime,
-                new DateInterval('P30D'),
-                $event->newEndDatetime,
+                $event->endDate
             )
         );
     }
@@ -57,43 +39,32 @@ final class NoTwoEventsAtSameLocationAndTime extends Invariant
     /**
      * @throws AggregateException
      */
-    private function checkOverlap(string $location, DatePeriod $newPeriod): void
+    private function checkOverlap(string $eventId, DateTimeRange $newRange): void
     {
-        foreach ($this->locationPeriods[$location] as $period) {
-            if (self::periodsOverlap($period, $newPeriod)) {
-                throw AggregateException::invariantViolated(
-                    $this
-                );
+        $self = $this;
+
+        array_map(static function (DateTimeRange $range) use ($newRange, $self): void {
+            if ($range->overlaps($newRange)) {
+                throw AggregateException::invariantViolated($self);
             }
-        }
+        }, $this->eventDateRanges[$eventId]);
     }
 
     /**
      * @throws AggregateException
      */
-    private function addPeriod(string $location, DatePeriod $newPeriod): void
+    private function addRange(string $eventId, DateTimeRange $range): void
     {
-        if (!array_key_exists($location, $this->locationPeriods)) {
-            $this->locationPeriods[$location] = [];
+        if (!array_key_exists($eventId, $this->eventDateRanges)) {
+            $this->eventDateRanges[$eventId] = [];
         }
 
-        $this->checkOverlap($location, $newPeriod);
-        $this->locationPeriods[$location][]= $newPeriod;
+        $this->checkOverlap($eventId, $range);
+        $this->eventDateRanges[$eventId][]= $range;
     }
 
-    private function clearPeriod(string $location, DatePeriod $period): void
+    public function __toString()
     {
-        $newPeriods = array_filter(
-            $this->locationPeriods[$location],
-            static fn (DatePeriod $existingPeriod) => $existingPeriod !== $period
-        );
-
-        $this->locationPeriods[$location] = $newPeriods;
-    }
-
-    private static function periodsOverlap(DatePeriod $datePeriod1, DatePeriod $datePeriod2): bool
-    {
-        return ($datePeriod1->getStartDate() <= $datePeriod2->getEndDate()
-            && $datePeriod2->getEndDate() >= $datePeriod2->getStartDate());
+        return 'Two events cannot happen at the same time and at the same location';
     }
 }

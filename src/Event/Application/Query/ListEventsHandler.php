@@ -40,7 +40,13 @@ final readonly class ListEventsHandler
 
         if ($query->fromDate !== null) {
             $qb->andWhere(
-                $qb->expr()->gte('e.end')
+                $qb->expr()->gte('e.end', $query->fromDate)
+            );
+        }
+
+        if ($query->toDate !== null) {
+            $qb->andWhere(
+                $qb->expr()->lte('e.start', $query->toDate)
             );
         }
 
